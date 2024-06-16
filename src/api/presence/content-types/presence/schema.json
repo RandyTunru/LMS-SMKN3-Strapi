@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "presences",
+  "info": {
+    "singularName": "presence",
+    "pluralName": "presences",
+    "displayName": "Presence",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student"
+    },
+    "absency": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::absency.absency",
+      "inversedBy": "presences"
+    },
+    "kehadiran": {
+      "type": "string"
+    }
+  }
+}

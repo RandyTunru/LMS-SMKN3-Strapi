@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "account_types",
+  "info": {
+    "singularName": "account-type",
+    "pluralName": "account-types",
+    "displayName": "Account-type",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    }
+  }
+}

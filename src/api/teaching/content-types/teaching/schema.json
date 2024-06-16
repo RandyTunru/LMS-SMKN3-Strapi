@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachings",
+  "info": {
+    "singularName": "teaching",
+    "pluralName": "teachings",
+    "displayName": "Teaching",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::mata-pelajaran.mata-pelajaran",
+      "inversedBy": "teachings"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "teaching"
+    }
+  }
+}

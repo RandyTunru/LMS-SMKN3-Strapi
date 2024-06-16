@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "absencies",
+  "info": {
+    "singularName": "absency",
+    "pluralName": "absencies",
+    "displayName": "Absency"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "schedule": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::schedule.schedule"
+    },
+    "tanggal": {
+      "type": "string"
+    },
+    "presences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::presence.presence",
+      "mappedBy": "absency"
+    }
+  }
+}

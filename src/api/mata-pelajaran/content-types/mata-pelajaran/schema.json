@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mata_pelajarans",
+  "info": {
+    "singularName": "mata-pelajaran",
+    "pluralName": "mata-pelajarans",
+    "displayName": "Subject",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "teachings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::teaching.teaching",
+      "mappedBy": "subject"
+    }
+  }
+}
