@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rpps",
+  "info": {
+    "singularName": "rpp",
+    "pluralName": "rpps",
+    "displayName": "RPP",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "grade": {
+      "type": "integer"
+    },
+    "rpp": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "rpps"
+    }
+  }
+}

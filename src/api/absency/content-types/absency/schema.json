@@ -24,6 +24,12 @@
       "relation": "oneToMany",
       "target": "api::presence.presence",
       "mappedBy": "absency"
+    },
+    "teaching_report": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::teaching-report.teaching-report",
+      "mappedBy": "absency"
     }
   }
 }

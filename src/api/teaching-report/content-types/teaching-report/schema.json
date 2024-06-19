@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teaching_reports",
+  "info": {
+    "singularName": "teaching-report",
+    "pluralName": "teaching-reports",
+    "displayName": "TeachingReport"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "absency": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::absency.absency",
+      "inversedBy": "teaching_report"
+    },
+    "Report": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

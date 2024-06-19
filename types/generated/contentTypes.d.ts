@@ -779,6 +779,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::teaching.teaching'
     >;
+    rpps: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::rpp.rpp'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -817,6 +822,11 @@ export interface ApiAbsencyAbsency extends Schema.CollectionType {
       'api::absency.absency',
       'oneToMany',
       'api::presence.presence'
+    >;
+    teaching_report: Attribute.Relation<
+      'api::absency.absency',
+      'oneToOne',
+      'api::teaching-report.teaching-report'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1011,6 +1021,35 @@ export interface ApiPresencePresence extends Schema.CollectionType {
   };
 }
 
+export interface ApiRppRpp extends Schema.CollectionType {
+  collectionName: 'rpps';
+  info: {
+    singularName: 'rpp';
+    pluralName: 'rpps';
+    displayName: 'RPP';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    grade: Attribute.Integer;
+    rpp: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    users_permissions_user: Attribute.Relation<
+      'api::rpp.rpp',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::rpp.rpp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::rpp.rpp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiScheduleSchedule extends Schema.CollectionType {
   collectionName: 'schedules';
   info: {
@@ -1129,6 +1168,41 @@ export interface ApiTeachingTeaching extends Schema.CollectionType {
   };
 }
 
+export interface ApiTeachingReportTeachingReport extends Schema.CollectionType {
+  collectionName: 'teaching_reports';
+  info: {
+    singularName: 'teaching-report';
+    pluralName: 'teaching-reports';
+    displayName: 'TeachingReport';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    absency: Attribute.Relation<
+      'api::teaching-report.teaching-report',
+      'oneToOne',
+      'api::absency.absency'
+    >;
+    Report: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::teaching-report.teaching-report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::teaching-report.teaching-report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1153,9 +1227,11 @@ declare module '@strapi/types' {
       'api::class.class': ApiClassClass;
       'api::mata-pelajaran.mata-pelajaran': ApiMataPelajaranMataPelajaran;
       'api::presence.presence': ApiPresencePresence;
+      'api::rpp.rpp': ApiRppRpp;
       'api::schedule.schedule': ApiScheduleSchedule;
       'api::student.student': ApiStudentStudent;
       'api::teaching.teaching': ApiTeachingTeaching;
+      'api::teaching-report.teaching-report': ApiTeachingReportTeachingReport;
     }
   }
 }

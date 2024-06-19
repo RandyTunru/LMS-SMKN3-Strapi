@@ -82,6 +82,12 @@
       "relation": "oneToOne",
       "target": "api::teaching.teaching",
       "mappedBy": "users_permissions_user"
+    },
+    "rpps": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rpp.rpp",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
